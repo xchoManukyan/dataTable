@@ -271,14 +271,14 @@ class DataTable {
         return html;
     }
 
-    renderBody(){
+    renderBody(firstRun){
 
         let html = ``;
         if (this.pagination.data.length){
             this.pagination.data.forEach(item => {
                 html += `<tr ${this.getAttrs(this.options.trAttrs)}>${ this.renderRow(item) }</tr>`;
             })
-        }else {
+        }else if (!firstRun){
             html = `<tr><td colspan="${this.content.length}"><div style="height: 400px; display: flex; justify-content: center; align-items: center"><span>${this.options.noDataMessage}</span></div></td></tr>`
         }
         return `<tbody ${this.getAttrs(this.options.tbodyAttrs)}>${ html }</tbody>`
